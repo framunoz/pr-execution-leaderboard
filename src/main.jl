@@ -5,9 +5,7 @@ include("run_benchmarks.jl")
 
 # Entry point for the project
 function main()
-    println("Starting benchmarks...")
     run_benchmarks()
-    println("Benchmarks completed.")
 end
 
 # Run the main function if the script is executed directly
