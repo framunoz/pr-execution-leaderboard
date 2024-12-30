@@ -1,12 +1,15 @@
 using BenchmarkTools
 push!(LOAD_PATH, "src")
-using MyModule  # Import your module
+using MyModule
+
+# Get GitHub username from environment variable
+github_username = get(ENV, "GITHUB_ACTOR", "UNKNOWN")
 
 suite = BenchmarkGroup()
-suite["ec"] = BenchmarkGroup(["tag1","tag2"])
-suite["ec"][20] = @benchmarkable expensive_computation(20)
-suite["ec"][30] = @benchmarkable expensive_computation(30)
+suite[github_username] = BenchmarkGroup(["username"])  
+suite[github_username][10] = @benchmarkable expensive_computation(10)
 tune!(suite)
-results = run(suite,verbose = true)
+results = run(suite, verbose=true)
+
 # Save the benchmark results to a JSON file
 BenchmarkTools.save("benchmarks/benchmark_results.json", median(results))
