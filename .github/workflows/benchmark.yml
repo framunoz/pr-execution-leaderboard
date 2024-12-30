@@ -46,9 +46,10 @@ jobs:
       - name: Run benchmarks
         uses: benchmark-action/github-action-benchmark@v1
         with:
+          name: Test Benchmarks
           tool: 'julia'
-          output-file-path: benchmarks/benchmark_results.json
-          benchmark-data-dir-path: benchmarks
+          output-file-path: "benchmarks/benchmark_results.json"
+          benchmark-data-dir-path: "benchmarks"
           github-token: ${{ secrets.GITHUB_TOKEN }}
           comment-always: true
           summary-always: true
