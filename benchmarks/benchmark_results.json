@@ -1,12 +1,36 @@
-{
-    "benchmark_task_1": {
-        "time": 0.123456,
-        "memory": 1024,
-        "iterations": 100
+[
+    {
+        "name": "Benchmark 1",
+        "value": 0.1234,
+        "unit": "s",
+        "metrics": [
+            {
+                "metric": "time",
+                "value": 0.1234,
+                "unit": "s"
+            },
+            {
+                "metric": "memory",
+                "value": 1024,
+                "unit": "bytes"
+            }
+        ]
     },
-    "benchmark_task_2": {
-        "time": 0.234567,
-        "memory": 2048,
-        "iterations": 200
+    {
+        "name": "Benchmark 2",
+        "value": 0.5678,
+        "unit": "s",
+        "metrics": [
+            {
+                "metric": "time",
+                "value": 0.5678,
+                "unit": "s"
+            },
+            {
+                "metric": "memory",
+                "value": 2048,
+                "unit": "bytes"
+            }
+        ]
     }
-}
+]
