@@ -2,8 +2,7 @@ using Test
 push!(LOAD_PATH, "src")
 using MyModule
 
-function expensive_computation_recursive(n)
-    n = 30
+function expensive_computation_recursive(n::Int)
     if n == 1
         return 0
     elseif n == 2
@@ -12,8 +11,8 @@ function expensive_computation_recursive(n)
         return expensive_computation_recursive(n - 1) + expensive_computation_recursive(n - 2)
     end
 end
-
-expected_result    = expensive_computation()#solve(..., Theoretical())
-numerical_solution = expensive_computation_recursive()#solve(..., ForwardEuler())
+n=30
+expected_result    = expensive_computation_recursive(n)#solve(..., Theoretical())
+numerical_solution = expensive_computation(n)#solve(..., ForwardEuler())
 
 @test numerical_solution ≈ expected_result
