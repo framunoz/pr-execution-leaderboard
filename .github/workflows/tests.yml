@@ -1,0 +1,48 @@
+name: Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: [1.8, 1.9, 1.10] # Julia versions
+        arch: [x86_64]           # Architecture
+
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Julia
+        uses: julia-actions/setup-julia@v2
+        with:
+          version: ${{ matrix.version }}
+          arch: ${{ matrix.arch }}
+
+      - name: Cache artifacts
+        uses: actions/cache@v4
+        with:
+          path: ~/.julia/artifacts
+          key: ${{ runner.os }}-test-artifacts-${{ matrix.version }}-${{ hashFiles('**/Project.toml') }}
+          restore-keys: |
+            ${{ runner.os }}-test-artifacts-${{ matrix.version }}-
+            ${{ runner.os }}-test-artifacts-
+
+      - name: Cache compiled packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.julia/compiled
+          key: ${{ runner.os }}-test-compiled-${{ matrix.version }}
+          restore-keys: |
+            ${{ runner.os }}-test-compiled-
+
+      - name: Install dependencies
+        run: julia --project=. -e 'using Pkg; Pkg.resolve(); Pkg.instantiate()'
+
+      - name: Run tests
+        run: julia --project=. test/runtest.jl

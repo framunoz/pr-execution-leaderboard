@@ -8,6 +8,12 @@ on:
       - 'src/**'
       - 'benchmarks/**'
 
+  # Trigger after the completion of the Tests workflow
+  workflow_run:
+    workflows: ["Tests"]
+    types:
+      - completed
+
 permissions:
   contents: write # contents permission to update benchmark contents in gh-pages branch
   statuses: read
