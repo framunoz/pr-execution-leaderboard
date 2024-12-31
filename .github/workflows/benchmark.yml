@@ -38,7 +38,7 @@ jobs:
       # Step 3: Install dependencies
       - name: Install dependencies
         run: |
-          julia -e 'using Pkg; Pkg.instantiate(); Pkg.add("BenchmarkTools")'
+          julia -e 'using Pkg; Pkg.add("BenchmarkTools"); Pkg.instantiate()'
 
       # Step 4: Run the benchmark script
       - name: Run benchmarks
