@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         version: '1.10' # Julia versions
-        arch: 'x86_64'  # Architecture
+        arch: [x64]     # Architecture
 
     steps:
       - name: Check out the repository
