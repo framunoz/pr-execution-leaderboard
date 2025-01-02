@@ -43,8 +43,3 @@ jobs:
 
       - name: Run tests
         uses: julia-actions/julia-runtest@v1
-
-      - name: Log workflow info
-        run: |
-          echo "Workflow: Tests"
-          echo "Status: ${{ github.event.workflow_run.conclusion }}"
