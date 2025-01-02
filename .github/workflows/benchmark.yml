@@ -1,16 +1,9 @@
 name: Run Benchmarks
 
 on:
-  pull_request:
-    branches:
-      - main
-    paths:
-      - 'src/**'
-      - 'benchmarks/**'
-
-  # Trigger after the completion of the Tests workflow
   workflow_run:
-    workflows: ["Tests"]
+    workflows: 
+      - Tests
     types:
       - completed
 
@@ -22,6 +15,7 @@ permissions:
 
 jobs:
   benchmark:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
