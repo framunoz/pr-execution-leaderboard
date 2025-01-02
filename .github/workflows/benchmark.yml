@@ -25,31 +25,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code
-      - name: Checkout code
-        uses: actions/checkout@v2
+      # Step 1: Check out the repository
+        uses: actions/checkout@v4
 
       # Step 2: Set up Julia
-      - name: Set up Julia
-        uses: julia-actions/setup-julia@v1
+        uses: julia-actions/setup-julia@v2
         with:
-          version: '1.11'
+          version: '1.10'
 
-      # Step 3: Add and Instantiate Dependencies
+      # Step 3: Install dependencies and dev MyPkg in benchmarks environment
       - name: Install dependencies
         run: |
-          julia --project=. -e '
-          using Pkg;
-          Pkg.add("BenchmarkTools");
-          Pkg.instantiate();
-          Pkg.resolve();'
+          julia --project=benchmarks -e '
+          using Pkg
+          Pkg.develop([ # dev MyPkg
+            PackageSpec(path=pwd(), subdir=".")
+          ])
+          Pkg.instantiate()'
 
-      # Step 4: Run the benchmark script
+      # Step 4: Run the benchmarks
       - name: Run benchmarks
         run: |
-          julia benchmarks/benchmark.jl
-        env:
-          JULIA_PROJECT: .
+          julia --project=benchmarks benchmarks/benchmark.jl
 
       # Step 5: Upload benchmark results using github-action-benchmark
       - name: Upload Benchmark Results
