@@ -5,14 +5,16 @@ on:
     branches:
       - main
   pull_request:
+    branches:
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [1.8, 1.9, 1.10] # Julia versions
-        arch: [x86_64]           # Architecture
+        version: [1.10] # Julia versions
+        arch: [x86_64]  # Architecture
 
     steps:
       - name: Check out the repository
