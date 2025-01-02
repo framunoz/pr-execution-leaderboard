@@ -10,4 +10,4 @@ tune!(suite)
 results = run(suite, verbose=true)
 
 # Save the benchmark results to a JSON file
-BenchmarkTools.save("benchmarks/benchmark_results.json", median(results))
+BenchmarkTools.save("benchmarks/benchmark_results.json", median(results), std(results))
