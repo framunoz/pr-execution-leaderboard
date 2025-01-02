@@ -1,8 +1,9 @@
-module MyModule
+module MyPkg
 
 export expensive_computation, fast_function
+
 # A simple function to demonstrate benchmarking
-function expensive_computation(n::Int)
+function expensive_computation(n)
     if n == 1
         return 0
     elseif n == 2
@@ -10,7 +11,7 @@ function expensive_computation(n::Int)
     end
 
     a, b = 0, 1
-    for i in 3:n
+    for _ in 3:n
         a, b = b, a + b
     end
     return b

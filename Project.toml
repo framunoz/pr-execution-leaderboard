@@ -1,3 +1,4 @@
-[deps]
-BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
-JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+name = "MyPkg"
+uuid = "b59f1ed4-4c8e-4fc7-a035-90d7cbd7aaf3"
+authors = ["Carlos Castillo Passi <cncastillo@uc.cl>"]
+version = "0.1.0"
