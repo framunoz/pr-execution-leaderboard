@@ -1,9 +1,6 @@
 name: Run Benchmarks
 
 on:
-  pull_request:
-    branches:
-      - main
   workflow_run:
     workflows: [Run Tests]
     types: [completed]
