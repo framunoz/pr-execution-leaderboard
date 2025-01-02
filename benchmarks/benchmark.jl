@@ -1,6 +1,5 @@
 using BenchmarkTools
-push!(LOAD_PATH, "src")
-using MyModule
+using MyPkg
 
 # Get GitHub username from environment variable
 github_username = get(ENV, "GITHUB_ACTOR", "UNKNOWN")
