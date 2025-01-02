@@ -10,7 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: '1.10' # Julia versions
+        version:
+          - '1.10'
         arch: [x64]     # Architecture
 
     steps:
