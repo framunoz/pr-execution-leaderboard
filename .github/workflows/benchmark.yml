@@ -26,9 +26,11 @@ jobs:
 
     steps:
       # Step 1: Check out the repository
+      - name: Check out the repository
         uses: actions/checkout@v4
 
       # Step 2: Set up Julia
+      - name: Set up Julia
         uses: julia-actions/setup-julia@v2
         with:
           version: '1.10'
