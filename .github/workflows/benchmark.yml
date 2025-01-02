@@ -24,7 +24,7 @@ jobs:
       - name: Log workflow info
         run: |
           echo "Workflow: Tests"
-          echo "Status: ${{ github.event.workflow_run.conclusion }}"
+          echo "Status: ${{ github.event.workflow_run.conclusion == 'success' }}"
 
       # Step 1: Check out the repository
       - name: Check out the repository
