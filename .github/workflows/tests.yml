@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: [1.10] # Julia versions
-        arch: [x86_64]  # Architecture
+        version: '1.10' # Julia versions
+        arch: 'x86_64'  # Architecture
 
     steps:
       - name: Check out the repository
@@ -43,8 +43,5 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-test-compiled-
 
-      - name: Install dependencies
-        run: julia --project=. -e 'using Pkg; Pkg.add("BenchmarkTools"); Pkg.add("JSON"); Pkg.resolve(); Pkg.instantiate()'
-
       - name: Run tests
-        run: julia --project=. test/runtest.jl
+        uses: julia-actions/julia-runtest@v1
