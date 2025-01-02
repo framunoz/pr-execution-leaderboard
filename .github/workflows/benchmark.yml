@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   workflow_run:
     workflows: [Run Tests]
-    types: [in_progress]
+    # types: [in_progress]
 
 permissions:
   contents: write
