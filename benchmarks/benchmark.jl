@@ -4,6 +4,11 @@ using MyPkg
 # Get GitHub username from environment variable
 github_username = get(ENV, "GITHUB_ACTOR", "UNKNOWN")
 
+# Inputs
+m0   = [1.0, 0.0, 0.0]
+Δt   = 0.001
+tmax = 3.0
+
 # Define the benchmark
 suite = BenchmarkGroup()
 suite["function1"][github_username] = @benchmarkable solver(m0, Δt, tmax, ForwardEuler())
