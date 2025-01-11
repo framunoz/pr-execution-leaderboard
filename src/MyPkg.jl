@@ -1,7 +1,5 @@
 module MyPkg
 
-using LinearAlgebra
-
 t0 = 0.
 tf = 3.
 γ = 2 * π * 42.58 * 1e6  # rad s^-1 T^-1
