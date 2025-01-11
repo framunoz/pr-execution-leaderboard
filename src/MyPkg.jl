@@ -7,8 +7,8 @@ tf = 3.
 γ = 2 * π * 42.58 * 1e6  # rad s^-1 T^-1
 T1 = 1.  # s
 T2 = 0.5  # s
-Bz = 1e-7  # T
-B = [0.; 0.; Bz]
+# Bz = 1e-7  # T
+B = [0.; 0.; 1e-7]
 m0 = [1.; 0.; 0.]
 
 struct Theoretical
@@ -47,8 +47,10 @@ end
 "Returns the time derivative of the magnetization vector m."
 function bloch(m)
     Mx, My, Mz = m
+    Bx, By, Bz = B
     M0 = m0[1]
-    return γ * cross(m, B) - [Mx / T2; My / T2; (Mz - M0) / T1]
+    crossmB = [My * Bz - Mz * By; Mz * Bx - Mx * Bz; Mx * By - My * Bx]
+    return γ * crossmB - [Mx / T2; My / T2; (Mz - M0) / T1]
 end
 
 export solve, step, ForwardEuler, Theoretical
