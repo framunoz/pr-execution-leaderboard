@@ -5,8 +5,7 @@ tf = 3.
 γ = 2 * π * 42.58 * 1e6  # rad s^-1 T^-1
 T1 = 1.  # s
 T2 = 0.5  # s
-# Bz = 1e-7  # T
-B = [0.; 0.; 1e-7]
+B = [0.; 0.; 1e-7]  # T
 m0 = [1.; 0.; 0.]
 
 struct Theoretical
@@ -16,6 +15,7 @@ end
 function solve(m0, dt, tmax, method::Theoretical)
     t = dt:dt:tmax
     M0 = m0[1]
+    Bz = B[3]
     Mx = M0 * cos.(γ * Bz * t) .* exp.(-t / T2)
     My = -M0 * sin.(γ * Bz * t) .* exp.(-t / T2)
     Mz = M0 * (1 .- exp.(-t / T1))
